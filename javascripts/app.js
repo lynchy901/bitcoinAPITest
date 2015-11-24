@@ -3,8 +3,6 @@ var app = angular.module('Bitcoin', []);
 app.controller('logincntl', function($scope, $http) {
     $scope.input_guid;
     $scope.input_password;
-    //var input_guid = "8dca78f6-d89e-439a-8234-aa4e5dd30de0";
-    //var input_password = "MuIbFuFn1t9u94!!";
     var API_CODE = "84ac8198-cd38-4cda-b8a4-c35061404889";
 	
 
@@ -31,12 +29,13 @@ app.controller('logincntl', function($scope, $http) {
 });    
     
 app.controller('maincntl', function($scope, $http) {
-    $scope.input_guid = "8dca78f6-d89e-439a-8234-aa4e5dd30de0";
+    $scope.input_guid;
     $scope.input_password;
     $scope.input_to;
     $scope.input_amount;
     $scope.recipients;
     $scope.input_note;
+    $scope.input_fee;
     
     $scope.checkBalance = function() {
         
@@ -85,8 +84,13 @@ app.controller('maincntl', function($scope, $http) {
         } else {
             $scope.input_note = "&note=" + $scope.input_note;
         }
+        if (!$scope.input_fee || $scope.input_fee == "") {
+            $scope.input_fee = "";
+        } else {
+            $scope.input_fee = "&fee=" + $scope.input_fee;
+        }
         
-        var url = 'http://localhost:3000/merchant/' + $scope.input_guid + '/payment?to=' + $scope.input_to + '&amount=' + $scope.input_amount +  '&password=' + $scope.input_password;// + $scope.input_note;
+        var url = 'http://localhost:3000/merchant/' + $scope.input_guid + '/payment?to=' + $scope.input_to + '&amount=' + $scope.input_amount +  '&password=' + $scope.input_password + $scope.input_fee;// + $scope.input_note;
         
         $.ajax({
             url: url,
@@ -115,15 +119,21 @@ app.controller('maincntl', function($scope, $http) {
         console.log(jsonString);
         var myURIEncodedJSONString = encodeURIComponent(jsonString);
 
-        $scope.input_guid = "8dca78f6-d89e-439a-8234-aa4e5dd30de0";
-        $scope.input_password = "MuIbFuFn1t9u94!!";
+        $scope.input_guid;
+        $scope.input_password;
         
         if (!$scope.input_note) {
             $scope.input_note = "";
         } else {
             $scope.input_note = "&note=" + $scope.input_note;
         }
-        var url = 'http://localhost:3000/merchant/' + $scope.input_guid + '/sendmany?recipients=' + myURIEncodedJSONString + '&password=' + $scope.input_password;// + $scope.input_note; 
+        if (!$scope.input_fee || $scope.input_fee == "") {
+            $scope.input_fee = "";
+        } else {
+            $scope.input_fee = "&fee=" + $scope.input_fee;
+        }
+        
+        var url = 'http://localhost:3000/merchant/' + $scope.input_guid + '/sendmany?recipients=' + myURIEncodedJSONString + '&password=' + $scope.input_password + $scope.input_fee;// + $scope.input_note; 
         console.log(url);
         
         $.ajax({
