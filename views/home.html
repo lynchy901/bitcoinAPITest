@@ -1,0 +1,188 @@
+<html ng-app="Bitcoin">
+	<head>
+		<title>personal bitcoin assistant</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+
+	<body ng-controller="maincntl">
+        
+        <ul>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Check Balance</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transferModal">Transfer to One</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transferManyModal">Transfer to Many</button>
+            
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addressModal">List Addresses</button>
+            
+            </li>
+        </ul>
+        
+        <!-- Check Balance Modal -->
+        <div class="container">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td>GUID</td>
+                                    <td><input type="text" ng-model="input_guid"></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" ng-model="input_password"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="checkBalance(); clearVars()" class="btn btn-default" data-dismiss="modal">Check Balance</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- List Addresses Modal -->
+        <div class="container">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+            <div class="modal fade" id="addressModal" role="dialog">
+                <div class="modal-dialog">
+
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td>GUID</td>
+                                    <td><input type="text" ng-model="input_guid"></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" ng-model="input_password"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="listAddresses(); clearVars()" class="btn btn-default" data-dismiss="modal">List Addresses</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Transfer to one Modal -->
+        <div class="container">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+            <div class="modal fade" id="transferModal" role="dialog">
+                <div class="modal-dialog">
+
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td>GUID</td>
+                                    <td><input type="text" ng-model="input_guid"></td>
+                                </tr>
+                                <tr>
+                                    <td>To: </td>
+                                    <td><input type="text" ng-model="input_to"></td>
+                                </tr>
+                                <tr>
+                                    <td>Amount (Satoshi)</td>
+                                    <td><input type="text" ng-model="input_amount"></td>
+                                </tr>
+                                <tr>
+                                    <td>Note (Optional)</td>
+                                    <td><input type="text" maxlength="255" ng-model="input_note"></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" ng-model="input_password"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="sendToOne(); clearVars()" class="btn btn-default" data-dismiss="modal">Send Payment</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Transfer to many Modal -->
+        <div class="container">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+            <div class="modal fade" id="transferManyModal" role="dialog">
+                <div class="modal-dialog">
+
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td>GUID</td>
+                                    <td><input type="text" ng-model="input_guid"></td>
+                                </tr>
+                                <tr>
+                                    <td>Recipients Format (r1: amount, r2: amount)</td>
+                                    <td><input type="text" ng-model="recipients"></td>
+                                </tr>
+                                <tr>
+                                    <td>Note (Optional)</td>
+                                    <td><input type="text" maxlength="255" ng-model="input_note"></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" ng-model="input_password"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="sendToMany(); clearVars()" class="btn btn-default" data-dismiss="modal">Send Payment</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+	</body>
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="../javascripts/app.js"></script>
+</html>

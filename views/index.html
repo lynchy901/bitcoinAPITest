@@ -1,0 +1,22 @@
+<html ng-app="Bitcoin">
+	<head>
+		<title>personal bitcoin assistant</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+
+	<body ng-controller="logincntl">
+        <ul>
+            <li><input type="text" ng-model="input_guid"></li>
+            <li><input type="text" ng-model="input_password"></li>
+            <li><input type="submit" ng-click="login()"></li>li>
+        </ul>
+    </body>
+        
+        
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="../javascripts/app.js"></script>
+</html>

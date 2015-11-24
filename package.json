@@ -1,0 +1,24 @@
+{
+  "name": "bitcoinapitest",
+  "version": "1.0.0",
+  "description": "test of mywallet v2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lynchy901/bitcoinAPITest.git"
+  },
+  "author": "Nathan Lynch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lynchy901/bitcoinAPITest/issues"
+  },
+  "homepage": "https://github.com/lynchy901/bitcoinAPITest#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angularjs": "0.0.1",
+    "jquery": "^2.1.4"
+  }
+}
